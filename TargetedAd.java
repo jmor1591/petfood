@@ -33,8 +33,22 @@ public class TargetedAd {
 
 
     /* your code here */
-    
-     
+    DataCollector collector = new DataCollector();
+    collector.setData("socialMediaPostsSmall.txt", "targetWords.txt");
+
+    String usernames = "";
+
+    while (!curPost.equals("NONE")) {
+      String curPost = collector.getNextPost();
+      String curName = collector.getNextPost().substring(0, collector.getNextPost().indexOf(" "));
+      String target = collector.getNextTargetWord();
+      while (!target.equals("NONE")) {
+        if (curPost.indexOf(collector.getNextTargetWord()) != -1) {
+          usernames += " " + curName;
+        }
+      }
+      
+    }
   }
 
 }
