@@ -37,18 +37,22 @@ public class TargetedAd {
     collector.setData("socialMediaPostsSmall.txt", "targetWords.txt");
 
     String usernames = "";
+    String curPost = collector.getNextPost();
+    String target = "";
 
-    while (!curPost.equals("NONE")) {
-      String curPost = collector.getNextPost();
-      String curName = collector.getNextPost().substring(0, collector.getNextPost().indexOf(" "));
-      String target = collector.getNextTargetWord();
+    while (curPost.indexOf(" ") != -1) {
+      String curName = curPost.substring(0, curPost.indexOf(" "));
+      target = collector.getNextTargetWord();
+      boolean present = false;
       while (!target.equals("NONE")) {
-        if (curPost.indexOf(collector.getNextTargetWord()) != -1) {
-          usernames += " " + curName;
+        if (curPost.toLowerCase().indexOf(target) != -1 && !present) {
+          usernames += curName + " ";
+          present = true;
         }
+        target = collector.getNextTargetWord();
       }
-      
+      curPost = collector.getNextPost();
     }
+    System.out.println(usernames);
   }
-
 }
