@@ -1,16 +1,34 @@
 fur
 paw
-paws
 whisker
-whiskers
 fluff
-fluffy
 leash
 collar
-dog collar
 puppy
 kitten
 dog
 cat
 puppies
 kittens
+kitty
+pup 
+pups
+animal
+fur
+paw
+ whisker
+ fluff
+ leash
+ collar
+ puppy
+ kitten
+ dog
+ cat
+ puppies
+ kittens
+ kitty
+ pup 
+ pups
+ animal
+wolf
+ wolf

@@ -34,7 +34,7 @@ public class TargetedAd {
 
     /* your code here */
     DataCollector collector = new DataCollector();
-    collector.setData("socialMediaPostsSmall.txt", "targetWords.txt");
+    collector.setData("socialMediaPosts.txt", "targetWords.txt");
 
     String usernames = "";
     String curPost = collector.getNextPost();
@@ -53,6 +53,6 @@ public class TargetedAd {
       }
       curPost = collector.getNextPost();
     }
-    System.out.println(usernames);
+    collector.prepareAdvertisement("toSend.txt", usernames, "Check out this new, extremely nutritious pet food!");
   }
 }
