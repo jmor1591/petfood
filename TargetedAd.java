@@ -33,26 +33,42 @@ public class TargetedAd {
 
 
     /* your code here */
+    //creates new collector
     DataCollector collector = new DataCollector();
+    //the collector is given "access"/takes from the social media posts and target words
     collector.setData("socialMediaPosts.txt", "targetWords.txt");
 
+    //a place for the usernames to go is created
     String usernames = "";
+    //initialize curPost to get the first post of the list
     String curPost = collector.getNextPost();
+    //initializaes a target word so that each post analyzes every target word from the beginning of the targetWords.txt
     String target = "";
 
+    //while there is at least 1 valid post left (is there a post to look through)
     while (curPost.indexOf(" ") != -1) {
+      //collects the username for future use (better to grab now than later)
       String curName = curPost.substring(0, curPost.indexOf(" "));
+      //gets the first target word of the list of target words
       target = collector.getNextTargetWord();
+      //boolean to be used to determine if the username of the post being looked at has already been added to be
+      //advertised to
       boolean present = false;
+      //while we have not run out of target words
       while (!target.equals("NONE")) {
+        //if a target word's letters are in a post (in the correct order) and the username
+        //has not been added yet, then the username is added to 
         if (curPost.toLowerCase().indexOf(target) != -1 && !present) {
           usernames += curName + " ";
           present = true;
         }
+        //gets the next target word for the current post
         target = collector.getNextTargetWord();
       }
+      //at the end of looking at one post, the next post is cycled to be checked
       curPost = collector.getNextPost();
     }
+    //prepares advertisement by creating a file of possible usernames that the ad should be targeted to
     collector.prepareAdvertisement("toSend.txt", usernames, "Check out this new, extremely nutritious pet food!");
   }
 }
